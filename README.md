@@ -1,0 +1,1 @@
+A note taking app to understand and implement MERN concepts
