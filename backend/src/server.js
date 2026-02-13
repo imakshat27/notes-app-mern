@@ -1,9 +1,9 @@
 import 'dotenv/config'; // MUST be first
 
 import express from 'express';
+import cors from 'cors';
 import notesRouter from './routes/notes.route.js';
 import connectDB from './config/database.js';
-import cors from 'cors';
 import rateLimiter from './middleware/rateLimiter.js';
 
 const app = express();
@@ -17,11 +17,11 @@ app.use((req, res, next) => {
   next();
 });
 
-connectDB();
-
 const PORT = process.env.PORT || 4000;
 app.use('/api/notes', notesRouter);
 
-app.listen(PORT, () => {
-  console.log('Server is running on port', PORT);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log('Server is running on port', PORT);
+  });
 });
