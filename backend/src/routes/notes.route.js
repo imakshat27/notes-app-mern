@@ -14,4 +14,3 @@ router.delete('/:id', deleteNote);
 router.get('/:id', getNoteById);
 
 export default router;
-
